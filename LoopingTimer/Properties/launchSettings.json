@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "LoopingTimer": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ENV": "Development"
+      }
+    }
+  }
+}
