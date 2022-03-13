@@ -17,7 +17,9 @@ public class Timer
 	private IJobDetail? jobDetail;
 	private IScheduler? scheduler;
 	public readonly MessageDetails MessageDetails;
+	private string notificationMessageText;
 	private const string PN_MESSAGE_TEXT = "message";
+	private const string PN_CHATID= "chatId";
 	private const string PN_ID = "id";
 	private const int DEFAULT_INTERVAL = 120;
 
@@ -44,7 +46,7 @@ public class Timer
 	/// </summary>
 	public void SetMessageFromReply(string replyMessage)
 	{
-		// TODO
+		notificationMessageText = replyMessage;
 	}
 
 	public async Task start()
@@ -91,7 +93,8 @@ public class Timer
 			.WithDescription(messageDetails.messageText)
 			.Build();
 		
-		job.JobDataMap.Put(PN_MESSAGE_TEXT, messageDetails);
+		job.JobDataMap.Put(PN_CHATID, messageDetails.chatId);
+		job.JobDataMap.Put(PN_MESSAGE_TEXT, notificationMessageText);
 		job.JobDataMap.Put(PN_ID, id);
 
 		return job;

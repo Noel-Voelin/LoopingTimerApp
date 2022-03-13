@@ -15,7 +15,8 @@ namespace LoopingTimer.Handlers
 		public Task Execute(IJobExecutionContext context)
 		{
 			var dataMap = context.MergedJobDataMap;
-			var messageDetails = (MessageDetails) dataMap["message"];
+			var chatId = (string)dataMap["chatId"];
+			var text = (string)dataMap["message"];
 			var id = (string)dataMap["id"];
 
 
@@ -28,7 +29,7 @@ namespace LoopingTimer.Handlers
 				},
 			});
 
-			SendNotification?.Invoke(messageDetails.chatId, inlineKeyboard, messageDetails.messageText);
+			SendNotification?.Invoke(chatId, inlineKeyboard, text);
 			return Task.CompletedTask;
 		}
 	}

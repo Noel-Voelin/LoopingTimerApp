@@ -15,7 +15,7 @@ public class MessageHandler
 		NotificationHandler.SendNotification += OnSendMessageEvent;
 	}
 	
-	private void OnSendMessageEvent(ChatId chatId, IReplyMarkup reply, string text)
+	private void OnSendMessageEvent(ChatId chatId, IReplyMarkup? reply, string text)
 	{
 		_botClient.SendTextMessageAsync(
 			chatId: chatId,

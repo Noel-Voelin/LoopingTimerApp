@@ -12,6 +12,7 @@ namespace LoopingTimer.App
     /// </summary>
     public class LoopingTimerClient
     {
+	    public static event Action<MessageDetails>? SetNotificationMessageEvent;
 	    public static event Action<MessageDetails>? SetIntervalEvent;
 	    public static event Func<MessageDetails, Timer>? NewTimerEvent;
 	    public static event Action<string>? StopTimerEvent;
@@ -84,7 +85,11 @@ namespace LoopingTimer.App
 	        } else if (messageDetails.replyText is TimerHandler.SPECIFY_INTERVAL_TEXT)
 	        {
 		        SetIntervalEvent?.Invoke(messageDetails);
+	        } else if (messageDetails.replyText.Split('-').Last() is TimerHandler.SET_MESSAGE_TEXT)
+	        {
+		        SetNotificationMessageEvent?.Invoke(messageDetails);
 	        }
+	        
         }
     }
 }
