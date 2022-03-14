@@ -10,7 +10,7 @@ namespace LoopingTimer;
 /// </summary>
 public static class LoopingTimerApplication
 {
-    private static readonly TelegramBotClient BotClient = new TelegramBotClient("5122386149:AAH6vO9Xc1CcU29krrhZnvqdrX59Q1NZEo0");
+    private static readonly TelegramBotClient BotClient = new TelegramBotClient("Get your own token");
     private static readonly LoopingTimerClient LoopingTimer = new LoopingTimerClient(BotClient);
 
     /// <summary>
